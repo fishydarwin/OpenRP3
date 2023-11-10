@@ -97,4 +97,12 @@ public class ORPCharacter implements IORPCharacter {
     public void removeSkin(IORPCharacterSkin characterSkin) throws IllegalArgumentException {
 
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof ORPCharacter)) return false;
+        ORPCharacter otherCharacter = (ORPCharacter) other;
+        if (otherCharacter.playerUUID != this.playerUUID) return false;
+        return otherCharacter.characterUUID == this.characterUUID;
+    }
 }

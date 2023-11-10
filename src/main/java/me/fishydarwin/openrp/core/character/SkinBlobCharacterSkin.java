@@ -35,4 +35,12 @@ public class SkinBlobCharacterSkin implements IORPCharacterSkin {
     public @NotNull PlayerTextures getPlayerTextures() {
         return playerTextures;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof SkinBlobCharacterSkin)) return false;
+        SkinBlobCharacterSkin otherSkin = (SkinBlobCharacterSkin) other;
+        if (otherSkin.characterUUID != this.characterUUID) return false;
+        return otherSkin.skinID == this.skinID;
+    }
 }
