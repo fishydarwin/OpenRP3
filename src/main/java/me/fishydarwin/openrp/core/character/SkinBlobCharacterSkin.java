@@ -1,0 +1,38 @@
+package me.fishydarwin.openrp.core.character;
+
+import org.bukkit.profile.PlayerTextures;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.UUID;
+
+public class SkinBlobCharacterSkin implements IORPCharacterSkin {
+    private final UUID characterUUID;
+    private final PlayerTextures playerTextures;
+    private final int skinID;
+
+    public SkinBlobCharacterSkin(UUID characterUUID, PlayerTextures playerTextures, int skinID) {
+        this.characterUUID = characterUUID;
+        this.playerTextures = playerTextures;
+        this.skinID = skinID;
+    }
+
+    @Override
+    public @NotNull UUID getCharacterUUID() {
+        return characterUUID;
+    }
+
+    @Override
+    public int getSkinID() {
+        return skinID;
+    }
+
+    /**
+     * Returns the PlayerTextures object describing this specific skin.
+     *
+     * @return The player textures of this skin
+     */
+    @Override
+    public @NotNull PlayerTextures getPlayerTextures() {
+        return playerTextures;
+    }
+}

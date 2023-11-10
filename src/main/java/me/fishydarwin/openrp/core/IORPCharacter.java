@@ -36,4 +36,22 @@ public interface IORPCharacter {
      */
     @NotNull Set<IORPCharacterSkin> getAllSkins();
 
+    /**
+     * //TODO: Add information
+     * @throws IllegalStateException  //TODO: Add information
+     */
+    void setCurrentSkin() throws IllegalStateException;
+
+    /**
+     * //TODO: Add information
+     * @throws IllegalArgumentException //TODO: Add information
+     */
+    void addNewSkin() throws IllegalArgumentException;
+
+    /**
+     * //TODO: Add information
+     * @throws IllegalArgumentException //TODO: Add information
+     */
+    void removeSkin() throws IllegalArgumentException;
+
 }
