@@ -1,0 +1,4 @@
+name: OpenRP
+version: '${project.version}'
+main: me.fishydarwin.openrp.OpenRP
+api-version: '1.20'
