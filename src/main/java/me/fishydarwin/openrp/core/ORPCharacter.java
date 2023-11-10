@@ -73,7 +73,10 @@ public class ORPCharacter implements IORPCharacter {
      */
     @Override
     public void setCurrentSkin(IORPCharacterSkin characterSkin) throws IllegalStateException {
+        if (allSkins.stream().noneMatch(skin -> skin.equals(characterSkin)))
+            throw new IllegalStateException("This skin has not been added to this character's skins");
 
+        currentSkin = characterSkin;
     }
 
     /**
@@ -84,7 +87,10 @@ public class ORPCharacter implements IORPCharacter {
      */
     @Override
     public void addNewSkin(IORPCharacterSkin characterSkin) throws IllegalArgumentException {
+        if (allSkins.stream().anyMatch(skin -> !skin.equals(characterSkin)))
+            throw new IllegalArgumentException("Skin is already implemented");
 
+        allSkins.add(characterSkin);
     }
 
     /**
@@ -95,7 +101,10 @@ public class ORPCharacter implements IORPCharacter {
      */
     @Override
     public void removeSkin(IORPCharacterSkin characterSkin) throws IllegalArgumentException {
+        if (allSkins.stream().noneMatch(skin -> skin.equals(characterSkin)))
+            throw new IllegalArgumentException("Skin did not exist in the first place");
 
+        allSkins.remove(characterSkin);
     }
 
     @Override
