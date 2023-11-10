@@ -68,30 +68,33 @@ public class ORPCharacter implements IORPCharacter {
     /**
      * //TODO: Add information
      *
+     * @param characterSkin
      * @throws IllegalStateException //TODO: Add information
      */
     @Override
-    public void setCurrentSkin() throws IllegalStateException {
+    public void setCurrentSkin(IORPCharacterSkin characterSkin) throws IllegalStateException {
 
     }
 
     /**
      * //TODO: Add information
      *
+     * @param characterSkin
      * @throws IllegalArgumentException //TODO: Add information
      */
     @Override
-    public void addNewSkin() throws IllegalArgumentException {
+    public void addNewSkin(IORPCharacterSkin characterSkin) throws IllegalArgumentException {
 
     }
 
     /**
      * //TODO: Add information
      *
+     * @param characterSkin
      * @throws IllegalArgumentException //TODO: Add information
      */
     @Override
-    public void removeSkin() throws IllegalArgumentException {
+    public void removeSkin(IORPCharacterSkin characterSkin) throws IllegalArgumentException {
 
     }
 }

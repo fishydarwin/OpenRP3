@@ -40,18 +40,17 @@ public interface IORPCharacter {
      * //TODO: Add information
      * @throws IllegalStateException  //TODO: Add information
      */
-    void setCurrentSkin() throws IllegalStateException;
+    void setCurrentSkin(IORPCharacterSkin characterSkin) throws IllegalStateException;
 
     /**
      * //TODO: Add information
      * @throws IllegalArgumentException //TODO: Add information
      */
-    void addNewSkin() throws IllegalArgumentException;
+    void addNewSkin(IORPCharacterSkin characterSkin) throws IllegalArgumentException;
 
     /**
      * //TODO: Add information
      * @throws IllegalArgumentException //TODO: Add information
      */
-    void removeSkin() throws IllegalArgumentException;
-
+    void removeSkin(IORPCharacterSkin characterSkin) throws IllegalArgumentException;
 }
