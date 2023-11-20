@@ -1,6 +1,13 @@
 package me.fishydarwin.openrp;
 
+import me.fishydarwin.openrp.repository.database.DBAutoConnection;
+import me.fishydarwin.openrp.repository.database.IDatabase;
+import me.fishydarwin.openrp.repository.database.LocalH2Database;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
+import java.io.IOException;
+import java.sql.SQLException;
 
 /*
    Copyright 2023 Rares Ionut Bozga
@@ -20,14 +27,33 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class OpenRP extends JavaPlugin {
 
+    private static OpenRP singleton;
+    public static OpenRP getInstance() {
+        return singleton;
+    }
+
+    private IDatabase database;
+    public IDatabase getDatabase() {
+        return database;
+    }
+
     @Override
     public void onEnable() {
-        // Plugin startup logic
+        singleton = this;
+
+        // initialize managers, utilities, etc.
+        // TODO: check config.yml for database type
+        try {
+            database = new LocalH2Database(new File(getDataFolder(), "database"));
+        } catch (IOException | SQLException e) {
+            throw new RuntimeException("Could not initialize database: " + e.getMessage());
+        }
 
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        // clean up managers, utilities, etc.
+
     }
 }

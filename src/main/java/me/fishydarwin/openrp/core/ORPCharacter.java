@@ -115,4 +115,15 @@ public class ORPCharacter implements IORPCharacter {
         if (otherCharacter.playerUUID != this.playerUUID) return false;
         return otherCharacter.characterUUID == this.characterUUID;
     }
+
+    @Override
+    public String toString() {
+        return "ORPCharacter{" +
+                "characterUUID=" + characterUUID +
+                ", playerUUID=" + playerUUID +
+                ", fieldMap=" + fieldMap +
+                ", currentSkin=" + currentSkin +
+                ", allSkins=" + allSkins +
+                '}';
+    }
 }
