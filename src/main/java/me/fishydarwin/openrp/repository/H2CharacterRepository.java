@@ -30,6 +30,9 @@ public class H2CharacterRepository implements ICharacterRepository {
 
         CompletableFuture<IORPCharacter> characterCompletableFuture = new CompletableFuture<>();
         Bukkit.getScheduler().runTaskAsynchronously(OpenRP.getInstance(), () -> {
+
+            // TODO: if id already in cachedCharacters, don't query again...
+
             try {
 
                 Connection connection = OpenRP.getInstance().getDatabase().getConnection();
