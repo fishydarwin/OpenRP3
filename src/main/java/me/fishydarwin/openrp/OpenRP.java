@@ -1,8 +1,8 @@
 package me.fishydarwin.openrp;
 
-import me.fishydarwin.openrp.repository.database.DBAutoConnection;
 import me.fishydarwin.openrp.repository.database.IDatabase;
 import me.fishydarwin.openrp.repository.database.LocalH2Database;
+import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -54,6 +54,7 @@ public final class OpenRP extends JavaPlugin {
     @Override
     public void onDisable() {
         // clean up managers, utilities, etc.
-
+        getServer().getScheduler().cancelTasks(this);
+        HandlerList.unregisterAll(this);
     }
 }

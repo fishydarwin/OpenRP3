@@ -1,6 +1,6 @@
 package me.fishydarwin.openrp.core;
 
-import me.fishydarwin.openrp.core.character.IORPCharacterField;
+import me.fishydarwin.openrp.core.character.ORPCharacterField;
 import me.fishydarwin.openrp.core.character.IORPCharacterSkin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -21,7 +21,7 @@ public interface IORPCharacter {
      * Returns all fields that this character owns;
      * @return a map of field names -> character fields
      */
-    @NotNull Map<String, IORPCharacterField> getFields();
+    @NotNull Map<String, ORPCharacterField> getFields();
 
     /**
      * Grabs this character's current skin, or null if the default Minecraft

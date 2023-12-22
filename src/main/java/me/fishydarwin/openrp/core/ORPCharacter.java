@@ -1,6 +1,5 @@
 package me.fishydarwin.openrp.core;
 
-import org.bukkit.NamespacedKey;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -8,18 +7,18 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-import me.fishydarwin.openrp.core.character.IORPCharacterField;
+import me.fishydarwin.openrp.core.character.ORPCharacterField;
 import me.fishydarwin.openrp.core.character.IORPCharacterSkin;
 
 public class ORPCharacter implements IORPCharacter {
     private final UUID characterUUID;
     private final UUID playerUUID;
-    private final Map<String, IORPCharacterField> fieldMap;
+    private final Map<String, ORPCharacterField> fieldMap;
 
     private IORPCharacterSkin currentSkin;
     private Set<IORPCharacterSkin> allSkins;
 
-    public ORPCharacter(UUID characterUUID, UUID playerUUID, Map<String, IORPCharacterField> fieldMap) {
+    public ORPCharacter(UUID characterUUID, UUID playerUUID, Map<String, ORPCharacterField> fieldMap) {
         this.characterUUID = characterUUID;
         this.playerUUID = playerUUID;
         this.fieldMap = fieldMap;
@@ -41,7 +40,7 @@ public class ORPCharacter implements IORPCharacter {
      * @return a map of field names -> character fields
      */
     @Override
-    public @NotNull Map<String, IORPCharacterField> getFields() {
+    public @NotNull Map<String, ORPCharacterField> getFields() {
         return fieldMap;
     }
 

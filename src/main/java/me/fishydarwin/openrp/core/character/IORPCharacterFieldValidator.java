@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public interface IORPCharacterFieldValidator {
 
-    @NotNull IORPCharacterField getAttachedField();
+    @NotNull ORPCharacterField getAttachedField();
 
     /**
      * Validates the attached field and returns true if the validation was successful.
