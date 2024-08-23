@@ -4,6 +4,7 @@ import me.fishydarwin.openrp.core.character.ORPCharacterField;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class CharacterFieldRegistry {
@@ -14,18 +15,20 @@ public class CharacterFieldRegistry {
         fields.put(fieldName, fieldClass);
     }
 
-    public static Set<ORPCharacterField> makeFields(UUID characterUUID) {
-        return fields.entrySet().stream().map((entry) -> {
-            String fieldName = entry.getKey();
-            Class<ORPCharacterField> fieldClass = entry.getValue();
-            try {
-                return fieldClass.getDeclaredConstructor(UUID.class, String.class)
-                        .newInstance(characterUUID, fieldName);
-            } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
-                     NoSuchMethodException e) {
-                throw new RuntimeException(e);
-            }
-        }).collect(Collectors.toSet());
+    public static Map<String, ORPCharacterField> makeFields(UUID characterUUID) {
+        return fields.entrySet().stream()
+                .map((entry) -> {
+                    String fieldName = entry.getKey();
+                    Class<ORPCharacterField> fieldClass = entry.getValue();
+                    try {
+                        return fieldClass.getDeclaredConstructor(UUID.class, String.class)
+                                .newInstance(characterUUID, fieldName);
+                    } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
+                             NoSuchMethodException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .collect(Collectors.toMap(ORPCharacterField::getFieldName, Function.identity()));
     }
 
 }

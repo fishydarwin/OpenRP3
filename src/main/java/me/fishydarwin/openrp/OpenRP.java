@@ -56,5 +56,6 @@ public final class OpenRP extends JavaPlugin {
         // clean up managers, utilities, etc.
         getServer().getScheduler().cancelTasks(this);
         HandlerList.unregisterAll(this);
+        database.flush();
     }
 }

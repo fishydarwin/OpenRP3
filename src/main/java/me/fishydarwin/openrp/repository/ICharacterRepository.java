@@ -6,6 +6,7 @@ import org.bukkit.OfflinePlayer;
 
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Stores all characters required for normal operation. <br>
@@ -19,14 +20,14 @@ public interface ICharacterRepository {
      * @param characterId The id (UUID) if the character.
      * @return An implementation of IORPCharacter whose ID matches.
      */
-    IORPCharacter get(UUID characterId);
+    CompletableFuture<IORPCharacter> get(UUID characterId);
 
     /**
      * Returns all characters which belong to the given player.
      * @param playerUUID The unique ID of the player.
      * @return All characters (potentially none) of this player.
      */
-    Map<UUID, IORPCharacter> getByPlayer(UUID playerUUID);
+    CompletableFuture<Map<UUID, IORPCharacter>> getByPlayer(UUID playerUUID);
 
     /**
      * Returns all characters which belong to the given player. <br>
@@ -34,7 +35,7 @@ public interface ICharacterRepository {
      * @param player The player to get from.
      * @return All characters (potentially none) of this player.
      */
-    Map<UUID, IORPCharacter> getByPlayer(OfflinePlayer player);
+    CompletableFuture<Map<UUID, IORPCharacter>> getByPlayer(OfflinePlayer player);
 
 
     /**
@@ -43,7 +44,7 @@ public interface ICharacterRepository {
      * @return True if operation was successful, false otherwise.
      * @throws RepositoryException if an error occurred.
      */
-    boolean add(IORPCharacter character) throws RepositoryException;
+    CompletableFuture<Boolean> add(IORPCharacter character) throws RepositoryException;
 
     /**
      * Removes an existing character from the repository.
@@ -53,7 +54,7 @@ public interface ICharacterRepository {
      * @throws me.fishydarwin.openrp.repository.exception.MissingEntryException
      *          if the character being removed is not yet in the repository.
      */
-    boolean remove(IORPCharacter character) throws RepositoryException;
+    CompletableFuture<Boolean> remove(IORPCharacter character) throws RepositoryException;
 
     /**
      * Updates (that is, saves or puts back in the database) all of the <br>
@@ -65,6 +66,38 @@ public interface ICharacterRepository {
      * @throws me.fishydarwin.openrp.repository.exception.MissingEntryException
      *          if the character being updated is not yet in the repository.
      */
-    boolean update(IORPCharacter character) throws RepositoryException;
+    CompletableFuture<Boolean> update(IORPCharacter character) throws RepositoryException;
+
+    /**
+     * Gets a player's currently active character ID by their UUID.
+     * @param playerUUID The unique ID of the player.
+     * @return The unique ID of the character currently used by this player.
+     */
+    CompletableFuture<UUID> getActiveCharacter(UUID playerUUID);
+
+    /**
+     * Gets a player's currently active character ID.
+     * Please note that internally, this will be done via the player's UUID.
+     * @param player The player to get from.
+     * @return The unique ID of the character currently used by this player.
+     */
+    CompletableFuture<UUID> getActiveCharacter(OfflinePlayer player);
+
+    /**
+     * Sets a player's currently active character ID by their UUID.
+     * @param playerUUID The unique ID of the player.
+     * @param characterId The character ID to make active.
+     * @return True if operation was successful, false otherwise.
+     */
+    CompletableFuture<Boolean> setActiveCharacter(UUID playerUUID, UUID characterId);
+
+    /**
+     * Sets a player's currently active character ID by their UUID.
+     * Please note that internally, this will be done via the player's UUID.
+     * @param player The player to get from.
+     * @param characterId The character ID to make active.
+     * @return True if operation was successful, false otherwise.
+     */
+    CompletableFuture<Boolean> setActiveCharacter(OfflinePlayer player, UUID characterId);
 
 }
