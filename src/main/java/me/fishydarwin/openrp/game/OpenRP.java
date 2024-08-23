@@ -25,10 +25,10 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public final class OpenRPPlugin extends JavaPlugin {
+public final class OpenRP extends JavaPlugin {
 
-    private static OpenRPPlugin singleton;
-    public static OpenRPPlugin getInstance() {
+    private static OpenRP singleton;
+    public static OpenRP getInstance() {
         return singleton;
     }
 

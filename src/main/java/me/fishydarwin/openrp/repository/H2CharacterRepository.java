@@ -16,7 +16,7 @@
 
 package me.fishydarwin.openrp.repository;
 
-import me.fishydarwin.openrp.game.OpenRPPlugin;
+import me.fishydarwin.openrp.game.OpenRP;
 import me.fishydarwin.openrp.core.IORPCharacter;
 import me.fishydarwin.openrp.core.ORPCharacter;
 import me.fishydarwin.openrp.core.character.ORPCharacterField;
@@ -50,11 +50,11 @@ public class H2CharacterRepository implements ICharacterRepository {
             return characterCompletableFuture;
         }
 
-        Bukkit.getScheduler().runTaskAsynchronously(OpenRPPlugin.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(OpenRP.getInstance(), () -> {
 
             try {
 
-                Connection connection = OpenRPPlugin.getInstance().getDatabase().getConnection();
+                Connection connection = OpenRP.getInstance().getDatabase().getConnection();
                 Statement characterStatement = connection.createStatement();
                 ResultSet characterResult =
                         characterStatement.executeQuery(
@@ -104,11 +104,11 @@ public class H2CharacterRepository implements ICharacterRepository {
     public CompletableFuture<Map<UUID, IORPCharacter>> getByPlayer(UUID playerUUID) {
 
         CompletableFuture<Map<UUID, IORPCharacter>> charactersCompletableFuture = new CompletableFuture<>();
-        Bukkit.getScheduler().runTaskAsynchronously(OpenRPPlugin.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(OpenRP.getInstance(), () -> {
 
             try {
 
-                Connection connection = OpenRPPlugin.getInstance().getDatabase().getConnection();
+                Connection connection = OpenRP.getInstance().getDatabase().getConnection();
                 Statement characterStatement = connection.createStatement();
                 ResultSet characterResult =
                         characterStatement.executeQuery(
@@ -161,10 +161,10 @@ public class H2CharacterRepository implements ICharacterRepository {
     public CompletableFuture<Boolean> add(IORPCharacter character) {
 
         CompletableFuture<Boolean> resultCompletableFuture = new CompletableFuture<>();
-        Bukkit.getScheduler().runTaskAsynchronously(OpenRPPlugin.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(OpenRP.getInstance(), () -> {
             try {
 
-                Connection connection = OpenRPPlugin.getInstance().getDatabase().getConnection();
+                Connection connection = OpenRP.getInstance().getDatabase().getConnection();
                 PreparedStatement addCharacterStatement = connection.prepareStatement(
                         "INSERT INTO Characters (characterId, playerId) VALUES (?, ?)"
                 );
@@ -200,10 +200,10 @@ public class H2CharacterRepository implements ICharacterRepository {
     public CompletableFuture<Boolean> remove(IORPCharacter character) throws RepositoryException {
 
         CompletableFuture<Boolean> resultCompletableFuture = new CompletableFuture<>();
-        Bukkit.getScheduler().runTaskAsynchronously(OpenRPPlugin.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(OpenRP.getInstance(), () -> {
             try {
 
-                Connection connection = OpenRPPlugin.getInstance().getDatabase().getConnection();
+                Connection connection = OpenRP.getInstance().getDatabase().getConnection();
                 Statement deleteCharacterStatement = connection.createStatement();
                 deleteCharacterStatement.executeUpdate(
                         "DELETE FROM Characters WHERE characterId=" + character.getCharacterUUID()
@@ -234,9 +234,9 @@ public class H2CharacterRepository implements ICharacterRepository {
     public CompletableFuture<Boolean> update(IORPCharacter character) {
 
         CompletableFuture<Boolean> resultCompletableFuture = new CompletableFuture<>();
-        Bukkit.getScheduler().runTaskAsynchronously(OpenRPPlugin.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(OpenRP.getInstance(), () -> {
             try {
-                Connection connection = OpenRPPlugin.getInstance().getDatabase().getConnection();
+                Connection connection = OpenRP.getInstance().getDatabase().getConnection();
 
                 for (ORPCharacterField field : character.getFields().values()) {
                     PreparedStatement addFieldStatement = connection.prepareStatement(
@@ -271,11 +271,11 @@ public class H2CharacterRepository implements ICharacterRepository {
             return activeCompletableFuture;
         }
 
-        Bukkit.getScheduler().runTaskAsynchronously(OpenRPPlugin.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(OpenRP.getInstance(), () -> {
 
             try {
 
-                Connection connection = OpenRPPlugin.getInstance().getDatabase().getConnection();
+                Connection connection = OpenRP.getInstance().getDatabase().getConnection();
                 Statement characterStatement = connection.createStatement();
                 ResultSet characterResult =
                         characterStatement.executeQuery(
@@ -313,9 +313,9 @@ public class H2CharacterRepository implements ICharacterRepository {
     public CompletableFuture<Boolean> setActiveCharacter(UUID playerUUID, UUID characterId) {
 
         CompletableFuture<Boolean> resultCompletableFuture = new CompletableFuture<>();
-        Bukkit.getScheduler().runTaskAsynchronously(OpenRPPlugin.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(OpenRP.getInstance(), () -> {
             try {
-                Connection connection = OpenRPPlugin.getInstance().getDatabase().getConnection();
+                Connection connection = OpenRP.getInstance().getDatabase().getConnection();
                 Statement existsStatement = connection.createStatement();
                 ResultSet existsResult =
                         existsStatement.executeQuery(
