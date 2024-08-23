@@ -26,11 +26,6 @@ public class SkinBlobCharacterSkin implements IORPCharacterSkin {
         return skinID;
     }
 
-    /**
-     * Returns the PlayerTextures object describing this specific skin.
-     *
-     * @return The player textures of this skin
-     */
     @Override
     public @NotNull PlayerTextures getPlayerTextures() {
         return playerTextures;

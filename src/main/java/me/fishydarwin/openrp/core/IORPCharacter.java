@@ -37,20 +37,20 @@ public interface IORPCharacter {
     @NotNull Set<IORPCharacterSkin> getAllSkins();
 
     /**
-     * //TODO: Add information
-     * @throws IllegalStateException  //TODO: Add information
+     * Sets the skin of this character.
+     * @throws IllegalStateException when the skin is in an invalid state
      */
     void setCurrentSkin(IORPCharacterSkin characterSkin) throws IllegalStateException;
 
     /**
-     * //TODO: Add information
-     * @throws IllegalArgumentException //TODO: Add information
+     * Adds a new skin to this character.
+     * @throws IllegalArgumentException when the skin is in an invalid state
      */
     void addNewSkin(IORPCharacterSkin characterSkin) throws IllegalArgumentException;
 
     /**
-     * //TODO: Add information
-     * @throws IllegalArgumentException //TODO: Add information
+     * Removes this skin from this character.
+     * @throws IllegalArgumentException when the skin is in an invalid state
      */
     void removeSkin(IORPCharacterSkin characterSkin) throws IllegalArgumentException;
 }

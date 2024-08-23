@@ -34,43 +34,21 @@ public class ORPCharacter implements IORPCharacter {
         return playerUUID;
     }
 
-    /**
-     * Returns all fields that this character owns;
-     *
-     * @return a map of field names -> character fields
-     */
     @Override
     public @NotNull Map<String, ORPCharacterField> getFields() {
         return fieldMap;
     }
 
-    /**
-     * Grabs this character's current skin, or null if the default Minecraft
-     * one is currently applied.
-     *
-     * @return This character's current skin, or null if none is set
-     */
     @Override
     public @Nullable IORPCharacterSkin getCurrentSkin() {
         return currentSkin;
     }
 
-    /**
-     * Grabs all skins which this character has saved, or an empty set if none.
-     *
-     * @return All the skins this character has saved.
-     */
     @Override
     public @NotNull Set<IORPCharacterSkin> getAllSkins() {
         return allSkins;
     }
 
-    /**
-     * //TODO: Add information
-     *
-     * @param characterSkin
-     * @throws IllegalStateException //TODO: Add information
-     */
     @Override
     public void setCurrentSkin(IORPCharacterSkin characterSkin) throws IllegalStateException {
         if (allSkins.stream().noneMatch(skin -> skin.equals(characterSkin)))
@@ -79,12 +57,6 @@ public class ORPCharacter implements IORPCharacter {
         currentSkin = characterSkin;
     }
 
-    /**
-     * //TODO: Add information
-     *
-     * @param characterSkin
-     * @throws IllegalArgumentException //TODO: Add information
-     */
     @Override
     public void addNewSkin(IORPCharacterSkin characterSkin) throws IllegalArgumentException {
         if (allSkins.stream().anyMatch(skin -> !skin.equals(characterSkin)))
@@ -93,12 +65,6 @@ public class ORPCharacter implements IORPCharacter {
         allSkins.add(characterSkin);
     }
 
-    /**
-     * //TODO: Add information
-     *
-     * @param characterSkin
-     * @throws IllegalArgumentException //TODO: Add information
-     */
     @Override
     public void removeSkin(IORPCharacterSkin characterSkin) throws IllegalArgumentException {
         if (allSkins.stream().noneMatch(skin -> skin.equals(characterSkin)))
