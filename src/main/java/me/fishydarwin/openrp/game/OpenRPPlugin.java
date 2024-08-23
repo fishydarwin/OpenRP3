@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package me.fishydarwin.openrp;
+package me.fishydarwin.openrp.game;
 
 import me.fishydarwin.openrp.repository.database.IDatabase;
 import me.fishydarwin.openrp.repository.database.LocalH2Database;
@@ -25,10 +25,10 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public final class OpenRP extends JavaPlugin {
+public final class OpenRPPlugin extends JavaPlugin {
 
-    private static OpenRP singleton;
-    public static OpenRP getInstance() {
+    private static OpenRPPlugin singleton;
+    public static OpenRPPlugin getInstance() {
         return singleton;
     }
 

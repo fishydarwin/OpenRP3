@@ -1,4 +1,4 @@
 name: OpenRP
 version: '${project.version}'
-main: me.fishydarwin.openrp.OpenRP
+main: me.fishydarwin.openrp.game.OpenRP
 api-version: '1.20'

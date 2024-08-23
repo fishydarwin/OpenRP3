@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package me.fishydarwin.openrp.commands;
+package me.fishydarwin.openrp.game.commands;
 
 import org.bukkit.command.BlockCommandSender;
 import org.bukkit.command.Command;
