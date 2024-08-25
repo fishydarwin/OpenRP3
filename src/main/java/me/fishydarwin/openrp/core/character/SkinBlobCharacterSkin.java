@@ -49,9 +49,8 @@ public class SkinBlobCharacterSkin implements IORPCharacterSkin {
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof SkinBlobCharacterSkin)) return false;
-        SkinBlobCharacterSkin otherSkin = (SkinBlobCharacterSkin) other;
-        if (otherSkin.characterUUID != this.characterUUID) return false;
-        return otherSkin.skinID == this.skinID;
+        if (!(other instanceof SkinBlobCharacterSkin otherSkin)) return false;
+        return otherSkin.getSkinID() == this.getSkinID() &&
+                otherSkin.getCharacterUUID().equals(this.getCharacterUUID());
     }
 }

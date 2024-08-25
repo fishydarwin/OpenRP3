@@ -23,8 +23,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-import me.fishydarwin.openrp.core.character.ORPCharacterField;
 import me.fishydarwin.openrp.core.character.IORPCharacterSkin;
+import me.fishydarwin.openrp.core.character.ORPCharacterField;
 
 public class ORPCharacter implements IORPCharacter {
     private final UUID characterUUID;
@@ -67,34 +67,33 @@ public class ORPCharacter implements IORPCharacter {
 
     @Override
     public void setCurrentSkin(IORPCharacterSkin characterSkin) throws IllegalStateException {
-        if (allSkins.stream().noneMatch(skin -> skin.equals(characterSkin)))
-            throw new IllegalStateException("This skin has not been added to this character's skins");
+        if (allSkins.stream().noneMatch(s -> s.equals(characterSkin)))
+            throw new IllegalStateException("This skin has not been registered by this character");
 
         currentSkin = characterSkin;
     }
 
     @Override
     public void addNewSkin(IORPCharacterSkin characterSkin) throws IllegalArgumentException {
-        if (allSkins.stream().anyMatch(skin -> !skin.equals(characterSkin)))
-            throw new IllegalArgumentException("Skin is already implemented");
+        if (allSkins.stream().anyMatch(s -> s.equals(characterSkin)))
+            throw new IllegalArgumentException("This skin has already been registered");
 
         allSkins.add(characterSkin);
     }
 
     @Override
     public void removeSkin(IORPCharacterSkin characterSkin) throws IllegalArgumentException {
-        if (allSkins.stream().noneMatch(skin -> skin.equals(characterSkin)))
-            throw new IllegalArgumentException("Skin did not exist in the first place");
+        if (allSkins.stream().noneMatch(s -> s.equals(characterSkin)))
+            throw new IllegalArgumentException("This skin has not been registered by this character");
 
         allSkins.remove(characterSkin);
     }
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof ORPCharacter)) return false;
-        ORPCharacter otherCharacter = (ORPCharacter) other;
-        if (otherCharacter.playerUUID != this.playerUUID) return false;
-        return otherCharacter.characterUUID == this.characterUUID;
+        if (!(other instanceof ORPCharacter otherCharacter)) return false;
+        return otherCharacter.getCharacterUUID().equals(this.getCharacterUUID())
+                && otherCharacter.getPlayerUUID().equals(this.getPlayerUUID());
     }
 
     @Override
