@@ -14,8 +14,10 @@
  *    limitations under the License.
  */
 
-package me.fishydarwin.openrp.core.character;
+package me.fishydarwin.openrp.core.character.field;
 
+import me.fishydarwin.openrp.core.character.IORPCharacterFieldValidator;
+import me.fishydarwin.openrp.core.character.ORPCharacterField;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
