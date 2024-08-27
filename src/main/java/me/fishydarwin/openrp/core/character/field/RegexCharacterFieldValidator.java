@@ -14,23 +14,24 @@
  *    limitations under the License.
  */
 
-package me.fishydarwin.openrp.core.character;
+package me.fishydarwin.openrp.core.character.field;
 
-import me.fishydarwin.openrp.core.character.exception.FieldLengthException;
+import me.fishydarwin.openrp.core.character.IORPCharacterFieldValidator;
+import me.fishydarwin.openrp.core.character.ORPCharacterField;
 import me.fishydarwin.openrp.core.character.exception.FieldValidationException;
 import me.fishydarwin.openrp.core.character.exception.NullFieldException;
 import org.jetbrains.annotations.NotNull;
 
-public class TextCharacterFieldValidator implements IORPCharacterFieldValidator {
+import java.util.regex.Pattern;
 
-    private final TextCharacterField field;
-    private final int minLength;
-    private final int maxLength;
+public class RegexCharacterFieldValidator implements IORPCharacterFieldValidator {
 
-    public TextCharacterFieldValidator(TextCharacterField field, int minLength, int maxLength) {
+    private final RegexCharacterField field;
+    private final Pattern pattern;
+
+    public RegexCharacterFieldValidator(RegexCharacterField field, Pattern pattern) {
         this.field = field;
-        this.minLength = minLength;
-        this.maxLength = maxLength;
+        this.pattern = pattern;
     }
 
     @Override
@@ -41,11 +42,7 @@ public class TextCharacterFieldValidator implements IORPCharacterFieldValidator 
     @Override
     public boolean validateField() throws FieldValidationException {
         if (field.getFieldValue() == null) throw new NullFieldException(field.getFieldName());
-        if (maxLength > 0)
-            if (field.getFieldValue().length() < minLength ||
-                    field.getFieldValue().length() > maxLength)
-                throw new FieldLengthException(minLength, maxLength);
-        return true;
-    }
 
+        return field.getFieldValue().matches(pattern.pattern());
+    }
 }
