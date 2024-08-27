@@ -75,8 +75,12 @@ public class H2CharacterRepository implements ICharacterRepository {
                     Map<String, ORPCharacterField> fields = CharacterFieldRegistry.makeFields(characterId);
                     while (fieldResult.next()) {
                         ORPCharacterField field = fields.get(fieldResult.getString("fieldName"));
-                        field.setFieldValue(fieldResult.getString("fieldValue"));
-                        fields.put(field.getFieldName(), field);
+                        if (field != null) {
+                            field.setFieldValue(fieldResult.getString("fieldValue"));
+                            fields.put(field.getFieldName(), field);
+                            continue;
+                        }
+                        // todo: remove invalid field from character
                     }
 
                     fieldResult.close();
@@ -130,8 +134,12 @@ public class H2CharacterRepository implements ICharacterRepository {
                     Map<String, ORPCharacterField> fields = CharacterFieldRegistry.makeFields(characterId);
                     while (fieldResult.next()) {
                         ORPCharacterField field = fields.get(fieldResult.getString("fieldName"));
-                        field.setFieldValue(fieldResult.getString("fieldValue"));
-                        fields.put(field.getFieldName(), field);
+                        if (field != null) {
+                            field.setFieldValue(fieldResult.getString("fieldValue"));
+                            fields.put(field.getFieldName(), field);
+                            continue;
+                        }
+                        // TODO: remove invalid field from character
                     }
 
                     fieldResult.close();
