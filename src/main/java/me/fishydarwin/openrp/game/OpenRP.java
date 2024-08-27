@@ -16,14 +16,15 @@
 
 package me.fishydarwin.openrp.game;
 
-import me.fishydarwin.openrp.repository.database.IDatabase;
-import me.fishydarwin.openrp.repository.database.LocalH2Database;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+
+import me.fishydarwin.openrp.repository.database.IDatabase;
+import me.fishydarwin.openrp.repository.database.LocalH2Database;
 
 public final class OpenRP extends JavaPlugin {
 

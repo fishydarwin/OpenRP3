@@ -20,6 +20,7 @@ import me.fishydarwin.openrp.core.character.IORPCharacterFieldValidator;
 import me.fishydarwin.openrp.core.character.ORPCharacterField;
 import me.fishydarwin.openrp.core.character.exception.FieldLengthException;
 import me.fishydarwin.openrp.core.character.exception.FieldValidationException;
+import me.fishydarwin.openrp.core.character.exception.FieldValueRangeException;
 import me.fishydarwin.openrp.core.character.exception.NullFieldException;
 import org.jetbrains.annotations.NotNull;
 
@@ -46,10 +47,10 @@ public class IntegerCharacterFieldValidator implements IORPCharacterFieldValidat
 
         int value = Integer.parseInt(field.getFieldValue());
         if (minValue != null){
-            if (value < minValue) return false;
+            if (value < minValue) throw new FieldValueRangeException("Value must be greater than " + minValue);
         }
         if (maxValue != null){
-            if (value > maxValue) return false;
+            if (value > maxValue) throw new FieldValueRangeException("Value must be lower than " + maxValue);
         }
         return true;
     }
