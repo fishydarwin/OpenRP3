@@ -16,5 +16,55 @@
 
 package me.fishydarwin.openrp.core;
 
+import net.kyori.adventure.audience.Audience;
+
+import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Formatter;
+import java.util.Set;
+
+/**
+ * Represents an OpenRP Chat Channel.
+ */
 public interface IORPChatChannel {
+
+    /**
+     * Gets the name of the channel.
+     * @return The name of the channel.
+     */
+    @NotNull String getName();
+
+    /**
+     * // TODO: darwin said to add this. pretty sure it's for formatting? unsure.
+     * @return // TODO
+     */
+    @NotNull Set<Formatter> getFormatters();
+
+    /**
+     * // TODO: will return a set of every viewer that can view this channel based on the player
+     * @param player The player in question.
+     * @return // TODO
+     */
+    @NotNull Set<Audience> getViewers(@NotNull IORPPlayer player);
+
+    /**
+     * // TODO: this method will check if the player has a cooldown or not
+     * @param player The player in question.
+     * @return // TODO
+     */
+    boolean canSend(@NotNull IORPPlayer player);
+
+    /**
+     * // TODO: will see if the player can speak in the channel with a use perm
+     * @param player The player in question.
+     * @return // TODO
+     */
+    boolean hasPermission(@NotNull IORPPlayer player);
+
+    /**
+     * // TODO: this will register the /(channel) <message> command
+     */
+    void registerCommand();
+
 }
